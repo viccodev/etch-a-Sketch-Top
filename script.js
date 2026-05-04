@@ -67,13 +67,11 @@ btnContainer.style.marginTop = "8px";
 btnReset = document.createElement("button");
 btnReset.textContent = "Reset grid";
 btnReset.setAttribute("id", "resetCanva");
-btnReset.addEventListener("click", (e) => {
-    let itms = canvasContainer.childNodes.forEach((nodo) =>{
-        nodo.style.backgroundColor = "";
-        nodo.style.opacity = "";
-    });
-    
+Array.from(canvasContainer.children).forEach((nodo) => {
+    nodo.style.backgroundColor = "";
+    nodo.style.opacity = "";
 });
+
 btnContainer.appendChild(btnReset);
 
 // BUTTON GRID SIZE - DONE
