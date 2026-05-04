@@ -1,0 +1,42 @@
+.outlined {
+    border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* OLD CODE
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+#main-container {
+    outline: 1px solid rgb(157, 151, 151)(103, 80, 80)(97, 79, 79)(89, 73, 73);
+    margin: 2px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(91, 91, 186);
+}
+#canvas-container {
+    border: blue 1px solid;
+    width: 500;  
+    height: 500; 
+
+.canvSquare {
+    outline: black 1px solid;
+}
+
+*/
