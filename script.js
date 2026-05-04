@@ -63,6 +63,9 @@ canvasContainer.style.boxSizing = "border-box";
 function createCanvasSize(alto, ancho){
     canvasContainer.replaceChildren();
     for(let i = 0; i < alto*ancho; i++) {
+        if(alto > 100 || ancho > 100){
+            return alert("PLEASE DONT USE MORE THAN 100!, you pc can explode!");
+        }
     let canvasSquare = document.createElement("div");
     canvasSquare.style.width = `calc(100% / ${ancho})`; 
     canvasSquare.style.height = `calc(100% / ${alto})`;
@@ -89,7 +92,11 @@ btnReset = document.createElement("button");
 btnReset.textContent = "Reset grid";
 btnReset.setAttribute("id", "resetCanva");
 btnReset.addEventListener("click", (e) => {
-    canvasContainer.replaceChildren();
+    let itms = canvasContainer.childNodes.forEach((nodo) =>{
+        nodo.style.backgroundColor = "";
+        nodo.style.opacity = "";
+    });
+    
 });
 btnContainer.appendChild(btnReset);
 
@@ -121,7 +128,7 @@ btnColor.textContent = `Color:`;
 
 
 btnColor.addEventListener("click", (e) => {
-    colorChoice = prompt(`Enter a Color to Use (RGB format Allowed) or type "random" or nothing to random color`);
+    colorChoice = prompt(`Enter a Color to Use (RGB format Allowed) or nothing to random color`);
     btnColor.textContent = `Color: ${colorChoice}`;
     itemColorChoice.style.backgroundColor = `${colorChoice}`;
 })
@@ -171,11 +178,13 @@ function drawMode(e){
 
         canvasContainer.addEventListener("mouseover", drawingHandler);
         btnDrawMode.value = "mouseover";
+        btnDrawMode.textContent = `Draw Mode MOUSEOVER`;
     } else if (btnDrawMode.value === "mouseover"){
         canvasContainer.removeEventListener("mouseover", drawingHandler);
 
         canvasContainer.addEventListener("click", drawingHandler); 
-        btnDrawMode.value = "click";       
+        btnDrawMode.value = "click";   
+        btnDrawMode.textContent = `Draw Mode CLICK`;    
     }
     /* old
     target = e.type;
@@ -208,12 +217,12 @@ function drawingHandler(e){
 
 
 function drawing(e, colorC){
-    target = e.target;
+    let target = e.target;
     if(target === canvasContainer){
         undefined;
     }else{
         // if color is not defined
-        if(target.style.backgroundColor === "" && colorChoice === undefined){
+        if(target.style.backgroundColor === "" && (colorChoice === undefined || colorChoice === "" || colorChoice === null)){
             target.style.backgroundColor = `RGB(${randomColor().join(",")}, 0.1)`;
         // if color is defined
         } else if (colorChoice){
