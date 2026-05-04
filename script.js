@@ -39,8 +39,6 @@ function createCanvasSize(alto, ancho){
     for(let i = 0; i < alto*ancho; i++) {
         if(alto > 100 || ancho > 100){
             return alert("PLEASE DONT USE MORE THAN 100!, you pc can explode!");
-        } else if (typeof alto !== "number" || typeof ancho !== "number"){
-            return alert("Please use only numbers");
         }
     let canvasSquare = document.createElement("div");
     canvasSquare.style.width = `calc(100% / ${ancho})`; 
@@ -67,11 +65,13 @@ btnContainer.style.marginTop = "8px";
 btnReset = document.createElement("button");
 btnReset.textContent = "Reset grid";
 btnReset.setAttribute("id", "resetCanva");
-Array.from(canvasContainer.children).forEach((nodo) => {
-    nodo.style.backgroundColor = "";
-    nodo.style.opacity = "";
+btnReset.addEventListener("click", (e) => {
+    let itms = canvasContainer.childNodes.forEach((nodo) =>{
+        nodo.style.backgroundColor = "";
+        nodo.style.opacity = "";
+    });
+    
 });
-
 btnContainer.appendChild(btnReset);
 
 // BUTTON GRID SIZE - DONE
